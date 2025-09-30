@@ -17,6 +17,25 @@
             background: #000;
             color: #fff;
             overflow-x: hidden;
+            cursor: default;
+        }
+        
+        /* Custom cursor effect */
+        .cursor-glow {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: width 0.3s, height 0.3s;
+        }
+        
+        .cursor-glow.active {
+            width: 40px;
+            height: 40px;
         }
         
         /* Animated background with particles */
@@ -112,6 +131,12 @@
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
         }
         
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
         .nav-contact {
             font-size: 12px;
             color: #fff;
@@ -144,6 +169,70 @@
         .nav-contact:hover {
             color: #000;
             border-color: #fff;
+        }
+        
+        /* Mobile menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 400px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 100px 40px;
+            transition: right 0.4s ease;
+            z-index: 999;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            letter-spacing: 2px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu a:hover {
+            padding-left: 10px;
+            color: #ddd;
         }
         
         /* Fade-in on scroll */
@@ -195,29 +284,75 @@
             animation: fadeIn 1.5s ease;
         }
         
-        /* Qualifier Section */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+        
+        .scroll-indicator span {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #666;
+            text-transform: uppercase;
+        }
+        
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            stroke: #666;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+        
+        /* Qualifier Section - Banner Style */
         .qualifier-section {
-            padding: 60px 50px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 30px 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
         }
         
         .qualifier-content {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             text-align: center;
         }
         
         .qualifier-content p {
-            font-size: 16px;
-            color: #aaa;
+            font-size: 15px;
+            color: #bbb;
             letter-spacing: 0.5px;
             line-height: 1.7;
+        }
+        
+        /* Section dividers */
+        .section-divider {
+            height: 1px;
+            width: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            margin: 0 auto;
+            transition: width 1s ease;
+        }
+        
+        .section-divider.visible {
+            width: 80%;
         }
         
         /* Questions Section */
         .questions-section {
             padding: 100px 50px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .questions-heading {
@@ -260,6 +395,23 @@
             height: 2px;
             background: linear-gradient(90deg, #fff, transparent);
             transition: width 0.4s ease;
+        }
+        
+        .question-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.05), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .question-card:hover::after {
+            opacity: 1;
         }
         
         .question-card:hover {
@@ -348,7 +500,6 @@
             padding: 100px 50px;
             max-width: 1100px;
             margin: 0 auto;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .about-intro {
@@ -369,6 +520,12 @@
             padding: 40px;
             margin-bottom: 40px;
             border-left: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .about-content-box:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-left-color: rgba(255, 255, 255, 0.3);
         }
         
         .about-content-box p {
@@ -385,7 +542,6 @@
         
         .expertise-block {
             padding: 40px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .expertise-block h3 {
@@ -408,10 +564,45 @@
             margin-bottom: 0;
         }
         
+        /* Testimonial Placeholder */
+        .testimonial-section {
+            padding: 100px 50px;
+        }
+        
+        .testimonial-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 60px 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-content:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.03);
+        }
+        
+        .testimonial-content h3 {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        
+        .testimonial-content p {
+            font-size: 14px;
+            color: #888;
+            letter-spacing: 1px;
+            font-style: italic;
+        }
+        
         /* What You'll Receive Section */
         .receive-section {
             padding: 100px 50px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .receive-content {
@@ -436,6 +627,13 @@
             padding: 50px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .receive-box:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
         }
         
         .receive-box p {
@@ -453,7 +651,6 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .contact-heading {
@@ -634,6 +831,18 @@
                 letter-spacing: 4px;
             }
             
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
             .hero {
                 padding: 0 30px;
             }
@@ -649,7 +858,11 @@
             }
             
             .qualifier-section {
-                padding: 50px 30px;
+                padding: 25px 30px;
+            }
+            
+            .qualifier-content p {
+                font-size: 14px;
             }
             
             .questions-section {
@@ -686,6 +899,14 @@
             .expertise-block h3 {
                 font-size: 26px;
                 letter-spacing: 3px;
+            }
+            
+            .testimonial-section {
+                padding: 80px 30px;
+            }
+            
+            .testimonial-content {
+                padding: 40px 30px;
             }
             
             .receive-section {
@@ -733,6 +954,9 @@
     </style>
 </head>
 <body>
+    <!-- Custom cursor glow -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+    
     <!-- Particle effect -->
     <div class="particles" id="particles"></div>
     
@@ -740,26 +964,48 @@
         <!-- Navigation -->
         <nav id="nav">
             <div class="logo">NIVEAUX</div>
-            <a class="nav-contact" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">CONTACT</a>
+            <div class="nav-links">
+                <a class="nav-contact" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">CONTACT</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#" onclick="scrollToSection('contact')">Contact</a>
+            <a href="#" onclick="scrollToSection('questions-section')">Services</a>
+            <a href="#" onclick="scrollToSection('about-section')">About</a>
+        </div>
         
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
-                <h1>STOP GUESSING.<br>START BENCHMARKING.</h1>
+                <h1>STOP GUESSING.<br>START WINNING.</h1>
                 <p>Data-driven insights for matchmakers tired of flying blind</p>
+            </div>
+            <div class="scroll-indicator" onclick="document.querySelector('.qualifier-section').scrollIntoView({behavior: 'smooth'})">
+                <span>Scroll</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                </svg>
             </div>
         </section>
         
-        <!-- Qualifier Section -->
+        <!-- Qualifier Section - Banner Style -->
         <section class="qualifier-section fade-in">
             <div class="qualifier-content">
                 <p>For established matchmakers managing 20+ active clients annually who are ready to compete with data, not just intuition</p>
             </div>
         </section>
         
+        <div class="section-divider fade-in"></div>
+        
         <!-- Questions Section -->
-        <section class="questions-section fade-in">
+        <section class="questions-section fade-in" id="questions-section">
             <h2 class="questions-heading">QUESTIONS WE<br>ANSWER</h2>
             
             <div class="questions-grid">
@@ -768,11 +1014,11 @@
                         Is My Success Rate Actually Good?
                         <span class="question-toggle">+</span>
                     </h3>
-                    <p>You close 65% of your clients successfully. But is that excellent or mediocre? Compare your match-to-relationship conversion rates, introduction-per-success ratios, and time-to-match metrics against matchmakers at your price point.</p>
+                    <p>You match 80% of your clients successfully. But is that excellent or mediocre? Compare your match-to-relationship conversion rates, introduction-per-success ratios, and time-to-match metrics against matchmakers at your price point.</p>
                     <div class="question-details">
                         <ul>
                             <li>See how your success rates compare by package tier ($10K vs $25K vs $50K+)</li>
-                            <li>Understand if your 8-12 month timeline is optimal or dragging</li>
+                            <li>Understand if your initial match process timeline is optimal</li>
                             <li>Know if you're over-introducing or under-delivering</li>
                         </ul>
                     </div>
@@ -780,13 +1026,13 @@
                 
                 <div class="question-card" onclick="this.classList.toggle('expanded')">
                     <h3>
-                        Can I Justify My $15K Fee?
+                        Are My High Fees Justified?
                         <span class="question-toggle">+</span>
                     </h3>
-                    <p>When prospects balk at your pricing, you rely on testimonials and reputation. But what if you could show them data proving your success rates justify the premium—or discover you're undercharging for superior results?</p>
+                    <p>When prospects balk at your pricing, you rely on testimonials and reputation. What if you can show your success rates justify premium pricing, or you discover you're undercharging for industry leading results?</p>
                     <div class="question-details">
                         <ul>
-                            <li>Prove your $15K package outperforms competitors at $8K</li>
+                            <li>Prove your matchmaking services outperform local competitors charging more than you</li>
                             <li>Defend premium pricing with statistical evidence</li>
                             <li>Convert high-value clients who want proof, not promises</li>
                         </ul>
@@ -825,8 +1071,10 @@
             </div>
         </section>
         
+        <div class="section-divider fade-in"></div>
+        
         <!-- About Section -->
-        <section class="about-section fade-in">
+        <section class="about-section fade-in" id="about-section">
             <div class="about-content">
                 <div class="about-intro">
                     <p>We answer these questions using comprehensive industry benchmarking.</p>
@@ -844,6 +1092,18 @@
             </div>
         </section>
         
+        <div class="section-divider fade-in"></div>
+        
+        <!-- Testimonial Placeholder -->
+        <section class="testimonial-section fade-in">
+            <div class="testimonial-content">
+                <h3>CLIENT SUCCESS STORIES</h3>
+                <p>Coming Soon — Matchmakers transforming their practices with data-driven insights</p>
+            </div>
+        </section>
+        
+        <div class="section-divider fade-in"></div>
+        
         <!-- What You'll Receive Section -->
         <section class="receive-section fade-in">
             <div class="receive-content">
@@ -855,12 +1115,14 @@
             </div>
         </section>
         
+        <div class="section-divider fade-in"></div>
+        
         <!-- Contact Section -->
         <section class="contact-section fade-in" id="contact">
             <h2 class="contact-heading">LET'S WORK<br>TOGETHER</h2>
             
             <p class="contact-qualifier">Ready to stop guessing? Initial benchmark consultations are complimentary for established matchmaking firms.</p>
-            <p class="contact-scarcity">We limit concurrent engagements to ensure depth of analysis. Current availability: 3 practices.</p>
+            <p class="contact-scarcity">We limit concurrent engagements to ensure depth of analysis. Current availability: <span id="availabilityCounter">3</span> practices.</p>
             
             <form class="contact-form" id="contactForm">
                 <div class="form-group">
@@ -890,8 +1152,37 @@
         </footer>
     </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/@datapivot/tslp@latest/dist/browser.js"></script>
     <script>
+        // Lead capture system using localStorage
+        function saveSubmission(data) {
+            let submissions = JSON.parse(localStorage.getItem('niveauxLeads') || '[]');
+            submissions.push({
+                ...data,
+                timestamp: new Date().toISOString(),
+                id: Date.now()
+            });
+            localStorage.setItem('niveauxLeads', JSON.stringify(submissions));
+        }
+        
+        // Global function to view leads (accessible in console)
+        window.viewLeads = function() {
+            const leads = JSON.parse(localStorage.getItem('niveauxLeads') || '[]');
+            console.table(leads);
+            return leads;
+        };
+        
+        // Custom cursor glow
+        const cursorGlow = document.getElementById('cursorGlow');
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+        
+        document.querySelectorAll('a, button, .question-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursorGlow.classList.add('active'));
+            el.addEventListener('mouseleave', () => cursorGlow.classList.remove('active'));
+        });
+        
         // Particle effect
         function createParticles() {
             const container = document.getElementById('particles');
@@ -908,6 +1199,17 @@
         }
         
         createParticles();
+        
+        // Card hover effect with mouse tracking
+        document.querySelectorAll('.question-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--mouse-x', x + '%');
+                card.style.setProperty('--mouse-y', y + '%');
+            });
+        });
         
         // Scroll-based animations
         const observerOptions = {
@@ -927,6 +1229,10 @@
             observer.observe(el);
         });
         
+        document.querySelectorAll('.section-divider').forEach(el => {
+            observer.observe(el);
+        });
+        
         // Nav scroll effect
         let lastScroll = 0;
         window.addEventListener('scroll', () => {
@@ -942,7 +1248,62 @@
             lastScroll = currentScroll;
         });
         
-        // Form submission
+        // Counter animation
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 30);
+        }
+        
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    entry.target.dataset.animated = 'true';
+                    animateCounter(entry.target, 3);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        const availabilityCounter = document.getElementById('availabilityCounter');
+        if (availabilityCounter) {
+            counterObserver.observe(availabilityCounter);
+        }
+        
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+        
+        // Form submission with localStorage
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -953,25 +1314,28 @@
             submitBtn.textContent = 'SENDING...';
             
             const formData = new FormData(this);
+            const submissionData = {
+                email: formData.get('email'),
+                blindspot: formData.get('blindspot'),
+                message: formData.get('message'),
+                source: 'niveaux.co'
+            };
             
             try {
-                await window.TSLP.submit({
-                    email: formData.get('email'),
-                    blindspot: formData.get('blindspot'),
-                    message: formData.get('message'),
-                    source: 'niveaux.co',
-                    timestamp: new Date().toISOString()
-                });
+                // Save to localStorage
+                saveSubmission(submissionData);
                 
                 messageDiv.className = 'form-message success';
-                messageDiv.textContent = 'Message sent successfully.';
+                messageDiv.textContent = 'Message sent successfully. We\'ll be in touch soon.';
                 
                 this.reset();
+                
+                console.log('Lead captured! Use viewLeads() in console to see all submissions.');
                 
             } catch (error) {
                 console.error('Submission error:', error);
                 messageDiv.className = 'form-message error';
-                messageDiv.textContent = 'Error. Please email luke@niveaux.co directly.';
+                messageDiv.textContent = 'Error saving submission. Please email luke@niveaux.co directly.';
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'SEND MESSAGE';
@@ -982,6 +1346,8 @@
                 }, 5000);
             }
         });
+        
+        console.log('Niveaux Lead Capture Active - Use viewLeads() to see submissions');
     </script>
 </body>
 </html>
