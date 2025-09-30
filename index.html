@@ -139,41 +139,143 @@
             text-transform: uppercase;
         }
         
-        /* Services Section */
-        .services {
-            padding: 100px 50px;
+        /* About Section */
+        .about-section {
+            padding: 120px 50px;
+            max-width: 1100px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        .service-item {
-            margin-bottom: 100px;
-            max-width: 800px;
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-            padding-left: 40px;
-            transition: border-color 0.3s ease;
-        }
-        
-        .service-item:hover {
-            border-left-color: rgba(255, 255, 255, 0.5);
-        }
-        
-        .service-number {
+        .section-label {
             font-size: 11px;
             letter-spacing: 4px;
             color: #555;
-            margin-bottom: 15px;
+            margin-bottom: 50px;
             font-weight: 500;
         }
         
-        .service-title {
-            font-size: 42px;
-            font-weight: 300;
-            letter-spacing: 6px;
-            margin-bottom: 20px;
-            line-height: 1.1;
+        .about-intro {
+            margin-bottom: 50px;
         }
         
-        .service-description {
+        .about-intro p {
+            font-size: 22px;
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        .about-intro p:last-child {
+            color: #fff;
+            font-size: 24px;
+        }
+        
+        .about-details {
+            margin-bottom: 60px;
+            padding-left: 40px;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .about-details p {
             font-size: 16px;
+            color: #888;
+            line-height: 1.7;
+            letter-spacing: 0.5px;
+        }
+        
+        .expertise-block {
+            padding: 50px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .expertise-block h3 {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+        
+        .expertise-block p {
+            font-size: 16px;
+            color: #888;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+        
+        .expertise-block p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Questions Section */
+        .questions-section {
+            padding: 120px 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .questions-heading {
+            font-size: 54px;
+            font-weight: 200;
+            letter-spacing: 8px;
+            margin-bottom: 80px;
+            text-align: center;
+            background: linear-gradient(135deg, #fff 0%, #666 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+        
+        .questions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .question-card {
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .question-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #fff;
+            transition: width 0.3s ease;
+        }
+        
+        .question-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .question-card:hover::before {
+            width: 100%;
+        }
+        
+        .question-card h3 {
+            font-size: 20px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .question-card p {
+            font-size: 14px;
             color: #888;
             line-height: 1.7;
             letter-spacing: 0.5px;
@@ -356,18 +458,44 @@
                 letter-spacing: 2px;
             }
             
-            .services {
+            .about-section {
                 padding: 80px 30px;
             }
             
-            .service-item {
-                margin-bottom: 80px;
-                padding-left: 30px;
+            .about-intro p {
+                font-size: 18px;
             }
             
-            .service-title {
-                font-size: 32px;
+            .about-intro p:last-child {
+                font-size: 20px;
+            }
+            
+            .about-details {
+                padding-left: 25px;
+            }
+            
+            .expertise-block h3 {
+                font-size: 26px;
+                letter-spacing: 3px;
+            }
+            
+            .questions-section {
+                padding: 80px 30px;
+            }
+            
+            .questions-heading {
+                font-size: 36px;
                 letter-spacing: 4px;
+                margin-bottom: 60px;
+            }
+            
+            .questions-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+            
+            .question-card {
+                padding: 28px;
             }
             
             .contact-section {
@@ -402,30 +530,57 @@
             </div>
         </section>
         
-        <!-- Services Section -->
-        <section class="services">
-            <div class="service-item">
-                <div class="service-number">01</div>
-                <h2 class="service-title">COMPETITIVE<br>INTELLIGENCE</h2>
-                <p class="service-description">
-                    Matchmaking professionals operate without performance benchmarks. Niveaux provides clarity by comparing your success rates against industry standards and top performers, enabling you to understand your true competitive position.
-                </p>
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="about-content">
+                <div class="section-label">ABOUT NIVEAUX PARTNERS</div>
+                
+                <div class="about-intro">
+                    <p>Matchmakers operate with data blind spots. Is an 80% success rate excellent or concerning? Is your pricing justified or are competitors achieving better results for less? Is your client drop-out rate & refund request rate below or above the industry norm?</p>
+                    <p>We answer these questions using comprehensive industry benchmarking.</p>
+                </div>
+                
+                <div class="about-details">
+                    <p>Niveaux aggregates anonymized performance data from other matchmakers to show how your processes, pricing, and outcomes compare to peers. We measure the entire client journey—success rates, dropout patterns, refund policies, client acquisition effectiveness, and 15+ other operational metrics.</p>
+                </div>
+                
+                <div class="expertise-block">
+                    <h3>Our Expertise</h3>
+                    <p>Our team brings proven methodology for building benchmark-driven optimization systems from leading consulting firms. Same rigorous approach, now focused on matchmaking.</p>
+                    <p>You didn't get into matchmaking to become a data analyst. We handle the analytics so you can focus on creating meaningful connections—while gaining the competitive intelligence to justify your pricing, optimize your processes, and differentiate with data instead of just testimonials.</p>
+                </div>
             </div>
+        </section>
+        
+        <!-- Questions Section -->
+        <section class="questions-section">
+            <h2 class="questions-heading">QUESTIONS WE HELP<br>YOU ANSWER</h2>
             
-            <div class="service-item">
-                <div class="service-number">02</div>
-                <h2 class="service-title">PRICING<br>STRATEGY</h2>
-                <p class="service-description">
-                    Without data, pricing decisions are guesswork. Our benchmarking insights give you concrete evidence to support your pricing structure, showing clients exactly where you rank in the market and why your services command their value.
-                </p>
-            </div>
-            
-            <div class="service-item">
-                <div class="service-number">03</div>
-                <h2 class="service-title">PROCESS<br>OPTIMIZATION</h2>
-                <p class="service-description">
-                    Identify inefficiencies and opportunities based on peer performance data. Our analysis reveals which processes drive success in top-performing matchmaking practices, giving you a roadmap for meaningful improvement.
-                </p>
+            <div class="questions-grid">
+                <div class="question-card">
+                    <h3>How Do I Compare?</h3>
+                    <p>Benchmark your success rates, pricing, and processes against industry performers by price point and market segment. Know where you stand in the competitive landscape.</p>
+                </div>
+                
+                <div class="question-card">
+                    <h3>Can I Justify My Pricing?</h3>
+                    <p>Use data-backed evidence to show prospects exactly why your services command their value. Move beyond testimonials to statistical proof of performance.</p>
+                </div>
+                
+                <div class="question-card">
+                    <h3>What Actually Drives Results?</h3>
+                    <p>Identify which processes correlate with higher success rates and better outcomes. Stop guessing about what works—optimize based on evidence from top performers.</p>
+                </div>
+                
+                <div class="question-card">
+                    <h3>Are My Refund Rates Normal?</h3>
+                    <p>Understand whether your dropout patterns stem from fixable problems or unrealistic client expectations. Benchmark against industry norms to diagnose issues.</p>
+                </div>
+                
+                <div class="question-card">
+                    <h3>Where Should I Invest Next?</h3>
+                    <p>Determine which operational improvements generate the highest return. Focus resources on changes that matter most to client satisfaction and referral rates.</p>
+                </div>
             </div>
         </section>
         
