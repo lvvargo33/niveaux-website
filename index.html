@@ -50,7 +50,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 30px 50px;
+            padding: 25px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -133,96 +133,41 @@
             font-size: 18px;
             color: #888;
             font-weight: 300;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             line-height: 1.6;
             animation: fadeIn 1.5s ease;
-            text-transform: uppercase;
-        }
-        
-        /* About Section */
-        .about-section {
-            padding: 120px 50px;
-            max-width: 1100px;
-            margin: 0 auto;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .section-label {
-            font-size: 11px;
-            letter-spacing: 4px;
-            color: #555;
-            margin-bottom: 50px;
-            font-weight: 500;
-        }
-        
-        .about-intro {
-            margin-bottom: 50px;
-        }
-        
-        .about-intro p {
-            font-size: 22px;
-            color: #ccc;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-        }
-        
-        .about-intro p:last-child {
-            color: #fff;
-            font-size: 24px;
-        }
-        
-        .about-details {
-            margin-bottom: 60px;
-            padding-left: 40px;
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .about-details p {
-            font-size: 16px;
-            color: #888;
-            line-height: 1.7;
-            letter-spacing: 0.5px;
-        }
-        
-        .expertise-block {
-            padding: 50px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .expertise-block h3 {
-            font-size: 32px;
-            font-weight: 300;
-            letter-spacing: 5px;
-            margin-bottom: 30px;
-            color: #fff;
-        }
-        
-        .expertise-block p {
-            font-size: 16px;
-            color: #888;
-            line-height: 1.7;
-            margin-bottom: 20px;
-            letter-spacing: 0.5px;
-        }
-        
-        .expertise-block p:last-child {
-            margin-bottom: 0;
         }
         
         /* Questions Section */
         .questions-section {
-            padding: 120px 50px;
+            padding: 100px 50px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .section-intro {
+            max-width: 900px;
+            margin: 0 auto 80px;
+            text-align: center;
+        }
+        
+        .section-intro p {
+            font-size: 16px;
+            color: #888;
+            line-height: 1.7;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+        
+        .section-intro .highlight {
+            color: #bbb;
+            font-size: 17px;
         }
         
         .questions-heading {
             font-size: 54px;
             font-weight: 200;
             letter-spacing: 8px;
-            margin-bottom: 80px;
+            margin-bottom: 70px;
             text-align: center;
             background: linear-gradient(135deg, #fff 0%, #666 100%);
             -webkit-background-clip: text;
@@ -234,7 +179,7 @@
         .questions-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 50px;
+            gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -281,6 +226,147 @@
             letter-spacing: 0.5px;
         }
         
+        /* About Section */
+        .about-section {
+            padding: 100px 50px;
+            max-width: 1100px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .section-label {
+            font-size: 11px;
+            letter-spacing: 4px;
+            color: #555;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+        
+        .about-intro {
+            margin-bottom: 40px;
+        }
+        
+        .about-intro p {
+            font-size: 22px;
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        .about-intro p:last-child {
+            color: #fff;
+            font-size: 24px;
+        }
+        
+        .about-details {
+            margin-bottom: 50px;
+            padding-left: 40px;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .about-details p {
+            font-size: 16px;
+            color: #888;
+            line-height: 1.7;
+            letter-spacing: 0.5px;
+        }
+        
+        .expertise-block {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .expertise-block h3 {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+        
+        .expertise-block p {
+            font-size: 16px;
+            color: #888;
+            line-height: 1.7;
+            margin-bottom: 18px;
+            letter-spacing: 0.5px;
+        }
+        
+        .expertise-block p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* How It Works Section */
+        .how-it-works-section {
+            padding: 100px 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .how-it-works-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .how-it-works-heading {
+            font-size: 48px;
+            font-weight: 200;
+            letter-spacing: 8px;
+            margin-bottom: 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #fff 0%, #666 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .methodology-viz {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .methodology-step {
+            text-align: center;
+            flex: 1;
+            min-width: 140px;
+        }
+        
+        .methodology-step-label {
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: #fff;
+            font-weight: 400;
+            padding: 15px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+        
+        .methodology-arrow {
+            font-size: 20px;
+            color: #555;
+            flex-shrink: 0;
+        }
+        
+        .methodology-description {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .methodology-description p {
+            font-size: 16px;
+            color: #888;
+            line-height: 1.7;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+        
         /* Contact Section */
         .contact-section {
             min-height: 100vh;
@@ -295,12 +381,21 @@
             font-size: 64px;
             font-weight: 200;
             letter-spacing: 8px;
-            margin-bottom: 60px;
+            margin-bottom: 30px;
             text-align: center;
             background: linear-gradient(135deg, #fff 0%, #666 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+        
+        .contact-qualifier {
+            text-align: center;
+            font-size: 15px;
+            color: #888;
+            letter-spacing: 1px;
+            margin-bottom: 50px;
+            line-height: 1.6;
         }
         
         .contact-form {
@@ -310,7 +405,7 @@
         }
         
         .form-group {
-            margin-bottom: 40px;
+            margin-bottom: 35px;
         }
         
         .form-group label {
@@ -345,7 +440,7 @@
         
         .form-group textarea {
             resize: vertical;
-            min-height: 120px;
+            min-height: 100px;
         }
         
         .submit-btn {
@@ -359,7 +454,7 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             display: block;
-            margin: 50px auto 0;
+            margin: 40px auto 0;
             position: relative;
             overflow: hidden;
             font-weight: 500;
@@ -408,7 +503,7 @@
         
         /* Footer */
         footer {
-            padding: 50px;
+            padding: 40px 50px;
             text-align: center;
             font-size: 10px;
             color: #555;
@@ -436,7 +531,7 @@
         /* Responsive */
         @media (max-width: 968px) {
             nav {
-                padding: 25px 30px;
+                padding: 20px 30px;
             }
             
             .logo {
@@ -454,8 +549,27 @@
             }
             
             .hero p {
-                font-size: 14px;
-                letter-spacing: 2px;
+                font-size: 16px;
+                letter-spacing: 1.5px;
+            }
+            
+            .questions-section {
+                padding: 80px 30px;
+            }
+            
+            .questions-heading {
+                font-size: 36px;
+                letter-spacing: 4px;
+                margin-bottom: 50px;
+            }
+            
+            .questions-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .question-card {
+                padding: 28px;
             }
             
             .about-section {
@@ -479,23 +593,27 @@
                 letter-spacing: 3px;
             }
             
-            .questions-section {
+            .how-it-works-section {
                 padding: 80px 30px;
             }
             
-            .questions-heading {
+            .how-it-works-heading {
                 font-size: 36px;
                 letter-spacing: 4px;
-                margin-bottom: 60px;
+                margin-bottom: 40px;
             }
             
-            .questions-grid {
-                grid-template-columns: 1fr;
-                gap: 35px;
+            .methodology-viz {
+                flex-direction: column;
+                gap: 15px;
             }
             
-            .question-card {
-                padding: 28px;
+            .methodology-arrow {
+                transform: rotate(90deg);
+            }
+            
+            .methodology-step {
+                min-width: 100%;
             }
             
             .contact-section {
@@ -505,11 +623,20 @@
             .contact-heading {
                 font-size: 42px;
                 letter-spacing: 4px;
-                margin-bottom: 50px;
+                margin-bottom: 25px;
+            }
+            
+            .contact-qualifier {
+                font-size: 14px;
+                margin-bottom: 40px;
             }
             
             .submit-btn {
                 padding: 14px 40px;
+            }
+            
+            footer {
+                padding: 35px 30px;
             }
         }
     </style>
@@ -526,45 +653,27 @@
         <section class="hero">
             <div class="hero-content">
                 <h1>BENCHMARKING<br>EXCELLENCE</h1>
-                <p>Data-driven insights for competitive matchmakers</p>
-            </div>
-        </section>
-        
-        <!-- About Section -->
-        <section class="about-section">
-            <div class="about-content">
-                <div class="section-label">ABOUT NIVEAUX PARTNERS</div>
-                
-                <div class="about-intro">
-                    <p>Matchmakers operate with data blind spots. Is an 80% success rate excellent or concerning? Is your pricing justified or are competitors achieving better results for less? Is your client drop-out rate & refund request rate below or above the industry norm?</p>
-                    <p>We answer these questions using comprehensive industry benchmarking.</p>
-                </div>
-                
-                <div class="about-details">
-                    <p>Niveaux aggregates anonymized performance data from other matchmakers to show how your processes, pricing, and outcomes compare to peers. We measure the entire client journey—success rates, dropout patterns, refund policies, client acquisition effectiveness, and 15+ other operational metrics.</p>
-                </div>
-                
-                <div class="expertise-block">
-                    <h3>Our Expertise</h3>
-                    <p>Our team brings proven methodology for building benchmark-driven optimization systems from leading consulting firms. Same rigorous approach, now focused on matchmaking.</p>
-                    <p>You didn't get into matchmaking to become a data analyst. We handle the analytics so you can focus on creating meaningful connections—while gaining the competitive intelligence to justify your pricing, optimize your processes, and differentiate with data instead of just testimonials.</p>
-                </div>
+                <p>Turn operational blind spots into competitive advantages</p>
             </div>
         </section>
         
         <!-- Questions Section -->
         <section class="questions-section">
-            <h2 class="questions-heading">QUESTIONS WE HELP<br>YOU ANSWER</h2>
+            <div class="section-intro">
+                <p class="highlight">For matchmaking professionals managing 20+ active clients annually</p>
+            </div>
+            
+            <h2 class="questions-heading">QUESTIONS WE<br>ANSWER</h2>
             
             <div class="questions-grid">
                 <div class="question-card">
                     <h3>How Do I Compare?</h3>
-                    <p>Benchmark your success rates, pricing, and processes against industry performers by price point and market segment. Know where you stand in the competitive landscape.</p>
+                    <p>Benchmark your success rates, pricing, and processes against industry performers by price point and market segment. Know exactly where you stand in the competitive landscape.</p>
                 </div>
                 
                 <div class="question-card">
                     <h3>Can I Justify My Pricing?</h3>
-                    <p>Use data-backed evidence to show prospects exactly why your services command their value. Move beyond testimonials to statistical proof of performance.</p>
+                    <p>Know exactly why your $15K package outperforms competitors at $8K—or fix what's broken. Move beyond testimonials to statistical proof of performance.</p>
                 </div>
                 
                 <div class="question-card">
@@ -584,9 +693,67 @@
             </div>
         </section>
         
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="about-content">
+                <div class="section-label">ABOUT NIVEAUX PARTNERS</div>
+                
+                <div class="about-intro">
+                    <p>Is an 80% success rate excellent or concerning? Is your pricing justified or are competitors achieving better results for less? Is your client drop-out rate below or above the industry norm?</p>
+                    <p>We answer these questions using comprehensive industry benchmarking.</p>
+                </div>
+                
+                <div class="about-details">
+                    <p>Niveaux aggregates anonymized performance data from matchmakers to reveal how your processes, pricing, and outcomes compare to peers. We measure the entire client journey—success rates, dropout patterns, refund policies, client acquisition effectiveness, and 15+ other operational metrics.</p>
+                </div>
+                
+                <div class="expertise-block">
+                    <h3>Our Expertise</h3>
+                    <p>We bring Fortune 500-grade analytics methodology to the matchmaking industry. Our approach has been proven with institutional-scale datasets managing 15,000+ employees and enterprise operations.</p>
+                    <p>You didn't become a matchmaker to run spreadsheets. We handle the analytics so you can focus on creating meaningful connections—while gaining the competitive intelligence to justify your pricing, optimize your processes, and differentiate with data instead of just testimonials.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- How It Works Section -->
+        <section class="how-it-works-section">
+            <div class="how-it-works-content">
+                <h2 class="how-it-works-heading">HOW IT WORKS</h2>
+                
+                <div class="methodology-viz">
+                    <div class="methodology-step">
+                        <div class="methodology-step-label">Your Metrics</div>
+                    </div>
+                    <div class="methodology-arrow">→</div>
+                    <div class="methodology-step">
+                        <div class="methodology-step-label">Industry Comparison</div>
+                    </div>
+                    <div class="methodology-arrow">→</div>
+                    <div class="methodology-step">
+                        <div class="methodology-step-label">Gap Analysis</div>
+                    </div>
+                    <div class="methodology-arrow">→</div>
+                    <div class="methodology-step">
+                        <div class="methodology-step-label">Process Recommendations</div>
+                    </div>
+                    <div class="methodology-arrow">→</div>
+                    <div class="methodology-step">
+                        <div class="methodology-step-label">Performance Tracking</div>
+                    </div>
+                </div>
+                
+                <div class="methodology-description">
+                    <p>Our systematic approach starts with your current operational metrics, benchmarks them against anonymized industry data, identifies specific performance gaps, and delivers actionable recommendations.</p>
+                    <p>We then track improvements over time, ensuring you maintain competitive advantages as the industry evolves.</p>
+                </div>
+            </div>
+        </section>
+        
         <!-- Contact Section -->
         <section class="contact-section" id="contact">
             <h2 class="contact-heading">LET'S WORK<br>TOGETHER</h2>
+            
+            <p class="contact-qualifier">Ready to see how you compare? Initial consultations are complimentary for qualified matchmaking firms.</p>
             
             <form class="contact-form" id="contactForm">
                 <div class="form-group">
@@ -595,8 +762,13 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
+                    <label for="blindspot">What's your biggest operational blind spot?</label>
+                    <input type="text" id="blindspot" name="blindspot" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message (Optional)</label>
+                    <textarea id="message" name="message"></textarea>
                 </div>
                 
                 <button type="submit" class="submit-btn">SEND MESSAGE</button>
@@ -628,6 +800,7 @@
                 // Submit to DataPivot using TSLP
                 await window.TSLP.submit({
                     email: formData.get('email'),
+                    blindspot: formData.get('blindspot'),
                     message: formData.get('message'),
                     source: 'niveaux.co',
                     timestamp: new Date().toISOString()
