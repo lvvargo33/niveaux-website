@@ -131,36 +131,36 @@
         
         .hero p {
             font-size: 18px;
-            color: #888;
+            color: #aaa;
             font-weight: 300;
             letter-spacing: 2px;
             line-height: 1.6;
             animation: fadeIn 1.5s ease;
         }
         
+        /* Qualifier Section */
+        .qualifier-section {
+            padding: 60px 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .qualifier-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .qualifier-content p {
+            font-size: 16px;
+            color: #aaa;
+            letter-spacing: 1px;
+            line-height: 1.6;
+        }
+        
         /* Questions Section */
         .questions-section {
             padding: 100px 50px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .section-intro {
-            max-width: 900px;
-            margin: 0 auto 80px;
-            text-align: center;
-        }
-        
-        .section-intro p {
-            font-size: 16px;
-            color: #888;
-            line-height: 1.7;
-            letter-spacing: 0.5px;
-            margin-bottom: 15px;
-        }
-        
-        .section-intro .highlight {
-            color: #bbb;
-            font-size: 17px;
         }
         
         .questions-heading {
@@ -178,7 +178,7 @@
         
         .questions-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
@@ -189,6 +189,8 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             position: relative;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.02);
         }
         
         .question-card::before {
@@ -211,19 +213,74 @@
             width: 100%;
         }
         
+        .question-card.expanded {
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
         .question-card h3 {
             font-size: 20px;
             font-weight: 400;
             letter-spacing: 2px;
             margin-bottom: 20px;
             color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .question-toggle {
+            font-size: 24px;
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+        
+        .question-card.expanded .question-toggle {
+            transform: rotate(45deg);
         }
         
         .question-card p {
             font-size: 14px;
-            color: #888;
+            color: #aaa;
             line-height: 1.7;
             letter-spacing: 0.5px;
+        }
+        
+        .question-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .question-card.expanded .question-details {
+            max-height: 300px;
+            margin-top: 20px;
+        }
+        
+        .question-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .question-details li {
+            font-size: 13px;
+            color: #999;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .question-details li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #666;
+        }
+        
+        .question-card:last-child {
+            grid-column: 1 / -1;
+            max-width: 580px;
+            margin: 0 auto;
         }
         
         /* About Section */
@@ -234,49 +291,45 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        .section-label {
-            font-size: 11px;
-            letter-spacing: 4px;
-            color: #555;
-            margin-bottom: 40px;
-            font-weight: 500;
-        }
-        
         .about-intro {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
         
         .about-intro p {
-            font-size: 22px;
-            color: #ccc;
+            font-size: 24px;
+            color: #ddd;
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-weight: 300;
             letter-spacing: 0.5px;
         }
         
         .about-intro p:last-child {
             color: #fff;
-            font-size: 24px;
+            font-size: 26px;
         }
         
-        .about-details {
-            margin-bottom: 50px;
-            padding-left: 40px;
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        .about-content-box {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 40px;
+            margin-bottom: 40px;
         }
         
-        .about-details p {
+        .about-content-box p {
             font-size: 16px;
-            color: #888;
-            line-height: 1.7;
+            color: #aaa;
+            line-height: 1.8;
             letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+        
+        .about-content-box p:last-child {
+            margin-bottom: 0;
         }
         
         .expertise-block {
             padding: 40px 0;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .expertise-block h3 {
@@ -289,8 +342,8 @@
         
         .expertise-block p {
             font-size: 16px;
-            color: #888;
-            line-height: 1.7;
+            color: #aaa;
+            line-height: 1.8;
             margin-bottom: 18px;
             letter-spacing: 0.5px;
         }
@@ -299,18 +352,18 @@
             margin-bottom: 0;
         }
         
-        /* How It Works Section */
-        .how-it-works-section {
+        /* What You'll Receive Section */
+        .receive-section {
             padding: 100px 50px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        .how-it-works-content {
+        .receive-content {
             max-width: 1100px;
             margin: 0 auto;
         }
         
-        .how-it-works-heading {
+        .receive-heading {
             font-size: 48px;
             font-weight: 200;
             letter-spacing: 8px;
@@ -322,49 +375,31 @@
             background-clip: text;
         }
         
-        .methodology-viz {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 50px;
-            flex-wrap: wrap;
+        .receive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
         
-        .methodology-step {
-            text-align: center;
-            flex: 1;
-            min-width: 140px;
+        .receive-item {
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
         }
         
-        .methodology-step-label {
-            font-size: 13px;
-            letter-spacing: 2px;
-            color: #fff;
+        .receive-item h4 {
+            font-size: 18px;
             font-weight: 400;
-            padding: 15px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: #fff;
         }
         
-        .methodology-arrow {
-            font-size: 20px;
-            color: #555;
-            flex-shrink: 0;
-        }
-        
-        .methodology-description {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .methodology-description p {
-            font-size: 16px;
-            color: #888;
+        .receive-item p {
+            font-size: 14px;
+            color: #aaa;
             line-height: 1.7;
             letter-spacing: 0.5px;
-            margin-bottom: 15px;
         }
         
         /* Contact Section */
@@ -392,10 +427,19 @@
         .contact-qualifier {
             text-align: center;
             font-size: 15px;
+            color: #aaa;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .contact-scarcity {
+            text-align: center;
+            font-size: 13px;
             color: #888;
             letter-spacing: 1px;
             margin-bottom: 50px;
-            line-height: 1.6;
+            font-style: italic;
         }
         
         .contact-form {
@@ -412,7 +456,7 @@
             display: block;
             font-size: 11px;
             letter-spacing: 4px;
-            color: #555;
+            color: #888;
             margin-bottom: 12px;
             text-transform: uppercase;
             font-weight: 500;
@@ -553,6 +597,10 @@
                 letter-spacing: 1.5px;
             }
             
+            .qualifier-section {
+                padding: 50px 30px;
+            }
+            
             .questions-section {
                 padding: 80px 30px;
             }
@@ -572,20 +620,25 @@
                 padding: 28px;
             }
             
+            .question-card:last-child {
+                grid-column: 1;
+                max-width: 100%;
+            }
+            
             .about-section {
                 padding: 80px 30px;
             }
             
             .about-intro p {
-                font-size: 18px;
-            }
-            
-            .about-intro p:last-child {
                 font-size: 20px;
             }
             
-            .about-details {
-                padding-left: 25px;
+            .about-intro p:last-child {
+                font-size: 22px;
+            }
+            
+            .about-content-box {
+                padding: 30px;
             }
             
             .expertise-block h3 {
@@ -593,27 +646,18 @@
                 letter-spacing: 3px;
             }
             
-            .how-it-works-section {
+            .receive-section {
                 padding: 80px 30px;
             }
             
-            .how-it-works-heading {
+            .receive-heading {
                 font-size: 36px;
                 letter-spacing: 4px;
                 margin-bottom: 40px;
             }
             
-            .methodology-viz {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .methodology-arrow {
-                transform: rotate(90deg);
-            }
-            
-            .methodology-step {
-                min-width: 100%;
+            .receive-grid {
+                grid-template-columns: 1fr;
             }
             
             .contact-section {
@@ -628,6 +672,11 @@
             
             .contact-qualifier {
                 font-size: 14px;
+                margin-bottom: 15px;
+            }
+            
+            .contact-scarcity {
+                font-size: 12px;
                 margin-bottom: 40px;
             }
             
@@ -652,43 +701,96 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
-                <h1>BENCHMARKING<br>EXCELLENCE</h1>
+                <h1>KNOW WHERE<br>YOU STAND</h1>
                 <p>Turn operational blind spots into competitive advantages</p>
+            </div>
+        </section>
+        
+        <!-- Qualifier Section -->
+        <section class="qualifier-section">
+            <div class="qualifier-content">
+                <p>For matchmaking professionals managing 20+ active clients annually</p>
             </div>
         </section>
         
         <!-- Questions Section -->
         <section class="questions-section">
-            <div class="section-intro">
-                <p class="highlight">For matchmaking professionals managing 20+ active clients annually</p>
-            </div>
-            
             <h2 class="questions-heading">QUESTIONS WE<br>ANSWER</h2>
             
             <div class="questions-grid">
-                <div class="question-card">
-                    <h3>How Do I Compare?</h3>
-                    <p>Benchmark your success rates, pricing, and processes against industry performers by price point and market segment. Know exactly where you stand in the competitive landscape.</p>
+                <div class="question-card" onclick="this.classList.toggle('expanded')">
+                    <h3>
+                        How Do I Compare?
+                        <span class="question-toggle">+</span>
+                    </h3>
+                    <p>Benchmark your success rates, pricing, and processes against industry performers by price point and market segment.</p>
+                    <div class="question-details">
+                        <ul>
+                            <li>See your percentile ranking across key performance metrics</li>
+                            <li>Compare outcomes by price tier and market size</li>
+                            <li>Identify where you excel and where you're falling behind</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <div class="question-card">
-                    <h3>Can I Justify My Pricing?</h3>
-                    <p>Know exactly why your $15K package outperforms competitors at $8K—or fix what's broken. Move beyond testimonials to statistical proof of performance.</p>
+                <div class="question-card" onclick="this.classList.toggle('expanded')">
+                    <h3>
+                        Can I Justify My Pricing?
+                        <span class="question-toggle">+</span>
+                    </h3>
+                    <p>Know exactly why your $15K package outperforms competitors at $8K—or fix what's broken.</p>
+                    <div class="question-details">
+                        <ul>
+                            <li>Show prospects statistical proof of your performance advantage</li>
+                            <li>Defend premium pricing with benchmark data</li>
+                            <li>Convert more high-value clients with evidence-based positioning</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <div class="question-card">
-                    <h3>What Actually Drives Results?</h3>
-                    <p>Identify which processes correlate with higher success rates and better outcomes. Stop guessing about what works—optimize based on evidence from top performers.</p>
+                <div class="question-card" onclick="this.classList.toggle('expanded')">
+                    <h3>
+                        What Actually Drives Results?
+                        <span class="question-toggle">+</span>
+                    </h3>
+                    <p>Identify which processes correlate with higher success rates and better outcomes based on evidence from top performers.</p>
+                    <div class="question-details">
+                        <ul>
+                            <li>Discover which intake processes predict success</li>
+                            <li>Learn timing strategies from top quartile performers</li>
+                            <li>Stop wasting resources on low-impact activities</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <div class="question-card">
-                    <h3>Are My Refund Rates Normal?</h3>
-                    <p>Understand whether your dropout patterns stem from fixable problems or unrealistic client expectations. Benchmark against industry norms to diagnose issues.</p>
+                <div class="question-card" onclick="this.classList.toggle('expanded')">
+                    <h3>
+                        Are My Refund Rates Normal?
+                        <span class="question-toggle">+</span>
+                    </h3>
+                    <p>Understand whether your dropout patterns stem from fixable problems or unrealistic client expectations.</p>
+                    <div class="question-details">
+                        <ul>
+                            <li>Benchmark refund rates against industry norms</li>
+                            <li>Identify early warning signs of client dissatisfaction</li>
+                            <li>Implement proven retention strategies from low-churn practices</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <div class="question-card">
-                    <h3>Where Should I Invest Next?</h3>
-                    <p>Determine which operational improvements generate the highest return. Focus resources on changes that matter most to client satisfaction and referral rates.</p>
+                <div class="question-card" onclick="this.classList.toggle('expanded')">
+                    <h3>
+                        Where Should I Invest Next?
+                        <span class="question-toggle">+</span>
+                    </h3>
+                    <p>Determine which operational improvements generate the highest return on client satisfaction and referral rates.</p>
+                    <div class="question-details">
+                        <ul>
+                            <li>Prioritize changes based on impact to revenue</li>
+                            <li>Focus resources where they matter most</li>
+                            <li>Build competitive advantages systematically</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
@@ -696,55 +798,48 @@
         <!-- About Section -->
         <section class="about-section">
             <div class="about-content">
-                <div class="section-label">ABOUT NIVEAUX PARTNERS</div>
-                
                 <div class="about-intro">
                     <p>Is an 80% success rate excellent or concerning? Is your pricing justified or are competitors achieving better results for less? Is your client drop-out rate below or above the industry norm?</p>
                     <p>We answer these questions using comprehensive industry benchmarking.</p>
                 </div>
                 
-                <div class="about-details">
+                <div class="about-content-box">
                     <p>Niveaux aggregates anonymized performance data from matchmakers to reveal how your processes, pricing, and outcomes compare to peers. We measure the entire client journey—success rates, dropout patterns, refund policies, client acquisition effectiveness, and 15+ other operational metrics.</p>
                 </div>
                 
                 <div class="expertise-block">
                     <h3>Our Expertise</h3>
-                    <p>We bring Fortune 500-grade analytics methodology to the matchmaking industry. Our approach has been proven with institutional-scale datasets managing 15,000+ employees and enterprise operations.</p>
-                    <p>You didn't become a matchmaker to run spreadsheets. We handle the analytics so you can focus on creating meaningful connections—while gaining the competitive intelligence to justify your pricing, optimize your processes, and differentiate with data instead of just testimonials.</p>
+                    <p>Our benchmarking approach has been proven in Fortune 500 contexts—from enterprise operations to workforce analytics managing 15,000+ employees. This methodology helped organizations reduce operational inefficiencies and save millions annually through data-driven optimization.</p>
+                    <p>The same rigorous approach, now purpose-built for matchmaking. You didn't become a matchmaker to run spreadsheets. We handle the analytics so you can focus on creating meaningful connections—while gaining the competitive intelligence to justify your pricing, optimize your processes, and differentiate with data instead of just testimonials.</p>
                 </div>
             </div>
         </section>
         
-        <!-- How It Works Section -->
-        <section class="how-it-works-section">
-            <div class="how-it-works-content">
-                <h2 class="how-it-works-heading">HOW IT WORKS</h2>
+        <!-- What You'll Receive Section -->
+        <section class="receive-section">
+            <div class="receive-content">
+                <h2 class="receive-heading">WHAT YOU'LL RECEIVE</h2>
                 
-                <div class="methodology-viz">
-                    <div class="methodology-step">
-                        <div class="methodology-step-label">Your Metrics</div>
+                <div class="receive-grid">
+                    <div class="receive-item">
+                        <h4>Confidential Benchmark Report</h4>
+                        <p>Your percentile ranking across 12+ operational metrics, compared against anonymized industry data by price point and market segment.</p>
                     </div>
-                    <div class="methodology-arrow">→</div>
-                    <div class="methodology-step">
-                        <div class="methodology-step-label">Industry Comparison</div>
+                    
+                    <div class="receive-item">
+                        <h4>Gap Analysis</h4>
+                        <p>Specific performance gaps vs. top quartile performers, with quantified opportunity costs of underperformance.</p>
                     </div>
-                    <div class="methodology-arrow">→</div>
-                    <div class="methodology-step">
-                        <div class="methodology-step-label">Gap Analysis</div>
+                    
+                    <div class="receive-item">
+                        <h4>Prioritized Recommendations</h4>
+                        <p>3-5 high-impact process improvements ranked by expected ROI, with implementation guidance.</p>
                     </div>
-                    <div class="methodology-arrow">→</div>
-                    <div class="methodology-step">
-                        <div class="methodology-step-label">Process Recommendations</div>
+                    
+                    <div class="receive-item">
+                        <h4>Ongoing Performance Tracking</h4>
+                        <p>Quarterly updates showing your progress against benchmarks as you implement changes and maintain competitive advantages.</p>
                     </div>
-                    <div class="methodology-arrow">→</div>
-                    <div class="methodology-step">
-                        <div class="methodology-step-label">Performance Tracking</div>
-                    </div>
-                </div>
-                
-                <div class="methodology-description">
-                    <p>Our systematic approach starts with your current operational metrics, benchmarks them against anonymized industry data, identifies specific performance gaps, and delivers actionable recommendations.</p>
-                    <p>We then track improvements over time, ensuring you maintain competitive advantages as the industry evolves.</p>
                 </div>
             </div>
         </section>
@@ -754,6 +849,7 @@
             <h2 class="contact-heading">LET'S WORK<br>TOGETHER</h2>
             
             <p class="contact-qualifier">Ready to see how you compare? Initial consultations are complimentary for qualified matchmaking firms.</p>
+            <p class="contact-scarcity">We limit engagements to maintain quality. Current availability: 3 firms.</p>
             
             <form class="contact-form" id="contactForm">
                 <div class="form-group">
