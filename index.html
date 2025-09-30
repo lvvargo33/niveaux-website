@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Niveaux — Benchmarking Excellence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,13 +13,13 @@
         }
         
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
             background: #000;
             color: #fff;
             overflow-x: hidden;
         }
         
-        /* Animated background gradient */
+        /* Animated background with particles */
         body::before {
             content: '';
             position: fixed;
@@ -39,13 +40,50 @@
             66% { transform: translate(5%, -5%) rotate(-3deg); }
         }
         
+        /* Particle effect */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
         /* Content wrapper */
         .content {
             position: relative;
             z-index: 1;
         }
         
-        /* Navigation */
+        /* Navigation with blur effect */
         nav {
             position: fixed;
             top: 0;
@@ -55,9 +93,15 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.95);
         }
         
         .logo {
@@ -102,6 +146,18 @@
             border-color: #fff;
         }
         
+        /* Fade-in on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -110,6 +166,7 @@
             justify-content: center;
             text-align: center;
             padding: 0 50px;
+            position: relative;
         }
         
         .hero-content {
@@ -118,7 +175,7 @@
         
         .hero h1 {
             font-size: 90px;
-            font-weight: 200;
+            font-weight: 300;
             letter-spacing: 12px;
             margin-bottom: 30px;
             line-height: 1.05;
@@ -153,8 +210,8 @@
         .qualifier-content p {
             font-size: 16px;
             color: #aaa;
-            letter-spacing: 1px;
-            line-height: 1.6;
+            letter-spacing: 0.5px;
+            line-height: 1.7;
         }
         
         /* Questions Section */
@@ -165,7 +222,7 @@
         
         .questions-heading {
             font-size: 54px;
-            font-weight: 200;
+            font-weight: 300;
             letter-spacing: 8px;
             margin-bottom: 70px;
             text-align: center;
@@ -185,12 +242,13 @@
         }
         
         .question-card {
-            padding: 35px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s ease;
             position: relative;
             cursor: pointer;
             background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
         }
         
         .question-card::before {
@@ -199,14 +257,16 @@
             top: 0;
             left: 0;
             width: 0;
-            height: 1px;
-            background: #fff;
-            transition: width 0.3s ease;
+            height: 2px;
+            background: linear-gradient(90deg, #fff, transparent);
+            transition: width 0.4s ease;
         }
         
         .question-card:hover {
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
         
         .question-card:hover::before {
@@ -214,7 +274,8 @@
         }
         
         .question-card.expanded {
-            border-color: rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
         }
         
         .question-card h3 {
@@ -231,24 +292,29 @@
         .question-toggle {
             font-size: 24px;
             color: #666;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        .question-card:hover .question-toggle {
+            color: #999;
         }
         
         .question-card.expanded .question-toggle {
             transform: rotate(45deg);
+            color: #fff;
         }
         
         .question-card p {
             font-size: 14px;
             color: #aaa;
-            line-height: 1.7;
-            letter-spacing: 0.5px;
+            line-height: 1.8;
+            letter-spacing: 0.3px;
         }
         
         .question-details {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease;
+            transition: max-height 0.4s ease;
         }
         
         .question-card.expanded .question-details {
@@ -277,12 +343,6 @@
             color: #666;
         }
         
-        .question-card:last-child {
-            grid-column: 1 / -1;
-            max-width: 580px;
-            margin: 0 auto;
-        }
-        
         /* About Section */
         .about-section {
             padding: 100px 50px;
@@ -296,30 +356,26 @@
         }
         
         .about-intro p {
-            font-size: 24px;
+            font-size: 26px;
             color: #ddd;
             line-height: 1.6;
             margin-bottom: 25px;
             font-weight: 300;
-            letter-spacing: 0.5px;
-        }
-        
-        .about-intro p:last-child {
-            color: #fff;
-            font-size: 26px;
+            letter-spacing: 0.3px;
         }
         
         .about-content-box {
             background: rgba(255, 255, 255, 0.03);
             padding: 40px;
             margin-bottom: 40px;
+            border-left: 2px solid rgba(255, 255, 255, 0.1);
         }
         
         .about-content-box p {
             font-size: 16px;
             color: #aaa;
             line-height: 1.8;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
             margin-bottom: 20px;
         }
         
@@ -345,7 +401,7 @@
             color: #aaa;
             line-height: 1.8;
             margin-bottom: 18px;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
         
         .expertise-block p:last-child {
@@ -359,47 +415,35 @@
         }
         
         .receive-content {
-            max-width: 1100px;
+            max-width: 900px;
             margin: 0 auto;
+            text-align: center;
         }
         
         .receive-heading {
             font-size: 48px;
-            font-weight: 200;
+            font-weight: 300;
             letter-spacing: 8px;
-            margin-bottom: 60px;
-            text-align: center;
+            margin-bottom: 50px;
             background: linear-gradient(135deg, #fff 0%, #666 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
-        .receive-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-        
-        .receive-item {
-            padding: 35px;
+        .receive-box {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 50px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
         }
         
-        .receive-item h4 {
-            font-size: 18px;
-            font-weight: 400;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-        
-        .receive-item p {
-            font-size: 14px;
-            color: #aaa;
-            line-height: 1.7;
-            letter-spacing: 0.5px;
+        .receive-box p {
+            font-size: 17px;
+            color: #bbb;
+            line-height: 1.9;
+            letter-spacing: 0.3px;
+            margin-bottom: 0;
         }
         
         /* Contact Section */
@@ -414,7 +458,7 @@
         
         .contact-heading {
             font-size: 64px;
-            font-weight: 200;
+            font-weight: 300;
             letter-spacing: 8px;
             margin-bottom: 30px;
             text-align: center;
@@ -428,7 +472,7 @@
             text-align: center;
             font-size: 15px;
             color: #aaa;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             margin-bottom: 20px;
             line-height: 1.6;
         }
@@ -437,7 +481,7 @@
             text-align: center;
             font-size: 13px;
             color: #888;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             margin-bottom: 50px;
             font-style: italic;
         }
@@ -465,21 +509,22 @@
         .form-group input,
         .form-group textarea {
             width: 100%;
-            background: transparent;
+            background: rgba(255, 255, 255, 0.02);
             border: none;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             color: #fff;
             font-size: 16px;
             padding: 12px 0;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            letter-spacing: 1px;
-            transition: border-color 0.3s ease;
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
         }
         
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-bottom-color: #fff;
+            background: rgba(255, 255, 255, 0.04);
         }
         
         .form-group textarea {
@@ -523,6 +568,8 @@
         .submit-btn:hover {
             color: #000;
             border-color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
         }
         
         .submit-btn:disabled {
@@ -578,6 +625,10 @@
                 padding: 20px 30px;
             }
             
+            nav.scrolled {
+                padding: 15px 30px;
+            }
+            
             .logo {
                 font-size: 14px;
                 letter-spacing: 4px;
@@ -617,12 +668,7 @@
             }
             
             .question-card {
-                padding: 28px;
-            }
-            
-            .question-card:last-child {
-                grid-column: 1;
-                max-width: 100%;
+                padding: 30px;
             }
             
             .about-section {
@@ -631,10 +677,6 @@
             
             .about-intro p {
                 font-size: 20px;
-            }
-            
-            .about-intro p:last-child {
-                font-size: 22px;
             }
             
             .about-content-box {
@@ -656,8 +698,8 @@
                 margin-bottom: 40px;
             }
             
-            .receive-grid {
-                grid-template-columns: 1fr;
+            .receive-box {
+                padding: 35px;
             }
             
             .contact-section {
@@ -691,9 +733,12 @@
     </style>
 </head>
 <body>
+    <!-- Particle effect -->
+    <div class="particles" id="particles"></div>
+    
     <div class="content">
         <!-- Navigation -->
-        <nav>
+        <nav id="nav">
             <div class="logo">NIVEAUX</div>
             <a class="nav-contact" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">CONTACT</a>
         </nav>
@@ -701,94 +746,79 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
-                <h1>KNOW WHERE<br>YOU STAND</h1>
-                <p>Turn operational blind spots into competitive advantages</p>
+                <h1>STOP GUESSING.<br>START BENCHMARKING.</h1>
+                <p>Data-driven insights for matchmakers tired of flying blind</p>
             </div>
         </section>
         
         <!-- Qualifier Section -->
-        <section class="qualifier-section">
+        <section class="qualifier-section fade-in">
             <div class="qualifier-content">
-                <p>For matchmaking professionals managing 20+ active clients annually</p>
+                <p>For established matchmakers managing 20+ active clients annually who are ready to compete with data, not just intuition</p>
             </div>
         </section>
         
         <!-- Questions Section -->
-        <section class="questions-section">
+        <section class="questions-section fade-in">
             <h2 class="questions-heading">QUESTIONS WE<br>ANSWER</h2>
             
             <div class="questions-grid">
                 <div class="question-card" onclick="this.classList.toggle('expanded')">
                     <h3>
-                        How Do I Compare?
+                        Is My Success Rate Actually Good?
                         <span class="question-toggle">+</span>
                     </h3>
-                    <p>Benchmark your success rates, pricing, and processes against industry performers by price point and market segment.</p>
+                    <p>You close 65% of your clients successfully. But is that excellent or mediocre? Compare your match-to-relationship conversion rates, introduction-per-success ratios, and time-to-match metrics against matchmakers at your price point.</p>
                     <div class="question-details">
                         <ul>
-                            <li>See your percentile ranking across key performance metrics</li>
-                            <li>Compare outcomes by price tier and market size</li>
-                            <li>Identify where you excel and where you're falling behind</li>
+                            <li>See how your success rates compare by package tier ($10K vs $25K vs $50K+)</li>
+                            <li>Understand if your 8-12 month timeline is optimal or dragging</li>
+                            <li>Know if you're over-introducing or under-delivering</li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="question-card" onclick="this.classList.toggle('expanded')">
                     <h3>
-                        Can I Justify My Pricing?
+                        Can I Justify My $15K Fee?
                         <span class="question-toggle">+</span>
                     </h3>
-                    <p>Know exactly why your $15K package outperforms competitors at $8K—or fix what's broken.</p>
+                    <p>When prospects balk at your pricing, you rely on testimonials and reputation. But what if you could show them data proving your success rates justify the premium—or discover you're undercharging for superior results?</p>
                     <div class="question-details">
                         <ul>
-                            <li>Show prospects statistical proof of your performance advantage</li>
-                            <li>Defend premium pricing with benchmark data</li>
-                            <li>Convert more high-value clients with evidence-based positioning</li>
+                            <li>Prove your $15K package outperforms competitors at $8K</li>
+                            <li>Defend premium pricing with statistical evidence</li>
+                            <li>Convert high-value clients who want proof, not promises</li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="question-card" onclick="this.classList.toggle('expanded')">
                     <h3>
-                        What Actually Drives Results?
+                        Why Do Clients Drop Out?
                         <span class="question-toggle">+</span>
                     </h3>
-                    <p>Identify which processes correlate with higher success rates and better outcomes based on evidence from top performers.</p>
+                    <p>Some clients ghost after 3 introductions. Others request refunds at month 4. Is this normal attrition or are you doing something wrong? Benchmark your dropout patterns, refund rates, and client satisfaction against industry norms.</p>
                     <div class="question-details">
                         <ul>
-                            <li>Discover which intake processes predict success</li>
-                            <li>Learn timing strategies from top quartile performers</li>
-                            <li>Stop wasting resources on low-impact activities</li>
+                            <li>Compare your refund rate to matchmakers in your market</li>
+                            <li>Identify if dropouts stem from match quality, pacing, or communication</li>
+                            <li>Learn what top performers do differently at the 90-day mark</li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="question-card" onclick="this.classList.toggle('expanded')">
                     <h3>
-                        Are My Refund Rates Normal?
+                        Am I Wasting Time on the Wrong Things?
                         <span class="question-toggle">+</span>
                     </h3>
-                    <p>Understand whether your dropout patterns stem from fixable problems or unrealistic client expectations.</p>
+                    <p>You spend hours on intake calls, carefully curating database searches, providing post-date coaching. But which activities actually drive successful matches? Discover what correlates with results vs. what just feels productive.</p>
                     <div class="question-details">
                         <ul>
-                            <li>Benchmark refund rates against industry norms</li>
-                            <li>Identify early warning signs of client dissatisfaction</li>
-                            <li>Implement proven retention strategies from low-churn practices</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="question-card" onclick="this.classList.toggle('expanded')">
-                    <h3>
-                        Where Should I Invest Next?
-                        <span class="question-toggle">+</span>
-                    </h3>
-                    <p>Determine which operational improvements generate the highest return on client satisfaction and referral rates.</p>
-                    <div class="question-details">
-                        <ul>
-                            <li>Prioritize changes based on impact to revenue</li>
-                            <li>Focus resources where they matter most</li>
-                            <li>Build competitive advantages systematically</li>
+                            <li>Learn how much time top performers spend on intake vs. matching</li>
+                            <li>Discover if your date coaching is helping or creating dependency</li>
+                            <li>Find out which database strategies predict success</li>
                         </ul>
                     </div>
                 </div>
@@ -796,60 +826,41 @@
         </section>
         
         <!-- About Section -->
-        <section class="about-section">
+        <section class="about-section fade-in">
             <div class="about-content">
                 <div class="about-intro">
-                    <p>Is an 80% success rate excellent or concerning? Is your pricing justified or are competitors achieving better results for less? Is your client drop-out rate below or above the industry norm?</p>
                     <p>We answer these questions using comprehensive industry benchmarking.</p>
                 </div>
                 
                 <div class="about-content-box">
-                    <p>Niveaux aggregates anonymized performance data from matchmakers to reveal how your processes, pricing, and outcomes compare to peers. We measure the entire client journey—success rates, dropout patterns, refund policies, client acquisition effectiveness, and 15+ other operational metrics.</p>
+                    <p>Niveaux reveals exactly how your matchmaking practice compares to peers. We aggregate anonymized performance data across the industry—success rates by price tier, average introductions per match, client dropout patterns, refund frequency, introduction pacing, database size vs. outcomes, and other critical metrics linked to revenue and successful matches for clients.</p>
                 </div>
                 
                 <div class="expertise-block">
                     <h3>Our Expertise</h3>
                     <p>Our benchmarking approach has been proven in Fortune 500 contexts—from enterprise operations to workforce analytics managing 15,000+ employees. This methodology helped organizations reduce operational inefficiencies and save millions annually through data-driven optimization.</p>
-                    <p>The same rigorous approach, now purpose-built for matchmaking. You didn't become a matchmaker to run spreadsheets. We handle the analytics so you can focus on creating meaningful connections—while gaining the competitive intelligence to justify your pricing, optimize your processes, and differentiate with data instead of just testimonials.</p>
+                    <p>The same rigorous approach, now purpose-built for matchmaking. You became a matchmaker to create life-changing connections, not to drown in spreadsheets. We handle the analytics so you can focus on what you do best—while gaining the intelligence to justify your fees, optimize your process, and prove your value with data instead of hoping testimonials are enough.</p>
                 </div>
             </div>
         </section>
         
         <!-- What You'll Receive Section -->
-        <section class="receive-section">
+        <section class="receive-section fade-in">
             <div class="receive-content">
                 <h2 class="receive-heading">WHAT YOU'LL RECEIVE</h2>
                 
-                <div class="receive-grid">
-                    <div class="receive-item">
-                        <h4>Confidential Benchmark Report</h4>
-                        <p>Your percentile ranking across 12+ operational metrics, compared against anonymized industry data by price point and market segment.</p>
-                    </div>
-                    
-                    <div class="receive-item">
-                        <h4>Gap Analysis</h4>
-                        <p>Specific performance gaps vs. top quartile performers, with quantified opportunity costs of underperformance.</p>
-                    </div>
-                    
-                    <div class="receive-item">
-                        <h4>Prioritized Recommendations</h4>
-                        <p>3-5 high-impact process improvements ranked by expected ROI, with implementation guidance.</p>
-                    </div>
-                    
-                    <div class="receive-item">
-                        <h4>Ongoing Performance Tracking</h4>
-                        <p>Quarterly updates showing your progress against benchmarks as you implement changes and maintain competitive advantages.</p>
-                    </div>
+                <div class="receive-box">
+                    <p>You receive a comprehensive confidential report showing your percentile ranking and performance across all critical matchmaking metrics, plus a detailed one-on-one session with an expert from our team who will walk you through exactly how you compare against peers, identify your biggest opportunities for improvement, and provide actionable steps tailored to your practice.</p>
                 </div>
             </div>
         </section>
         
         <!-- Contact Section -->
-        <section class="contact-section" id="contact">
+        <section class="contact-section fade-in" id="contact">
             <h2 class="contact-heading">LET'S WORK<br>TOGETHER</h2>
             
-            <p class="contact-qualifier">Ready to see how you compare? Initial consultations are complimentary for qualified matchmaking firms.</p>
-            <p class="contact-scarcity">We limit engagements to maintain quality. Current availability: 3 firms.</p>
+            <p class="contact-qualifier">Ready to stop guessing? Initial benchmark consultations are complimentary for established matchmaking firms.</p>
+            <p class="contact-scarcity">We limit concurrent engagements to ensure depth of analysis. Current availability: 3 practices.</p>
             
             <form class="contact-form" id="contactForm">
                 <div class="form-group">
@@ -881,6 +892,57 @@
     
     <script src="https://cdn.jsdelivr.net/npm/@datapivot/tslp@latest/dist/browser.js"></script>
     <script>
+        // Particle effect
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(particle);
+            }
+        }
+        
+        createParticles();
+        
+        // Scroll-based animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Nav scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+        
+        // Form submission
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -893,7 +955,6 @@
             const formData = new FormData(this);
             
             try {
-                // Submit to DataPivot using TSLP
                 await window.TSLP.submit({
                     email: formData.get('email'),
                     blindspot: formData.get('blindspot'),
