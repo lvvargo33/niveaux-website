@@ -564,42 +564,6 @@
             margin-bottom: 0;
         }
         
-        /* Testimonial Placeholder */
-        .testimonial-section {
-            padding: 100px 50px;
-        }
-        
-        .testimonial-content {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 60px 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-        
-        .testimonial-content:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.03);
-        }
-        
-        .testimonial-content h3 {
-            font-size: 28px;
-            font-weight: 300;
-            letter-spacing: 4px;
-            margin-bottom: 20px;
-            color: #ddd;
-        }
-        
-        .testimonial-content p {
-            font-size: 14px;
-            color: #888;
-            letter-spacing: 1px;
-            font-style: italic;
-        }
-        
         /* What You'll Receive Section */
         .receive-section {
             padding: 100px 50px;
@@ -642,6 +606,42 @@
             line-height: 1.9;
             letter-spacing: 0.3px;
             margin-bottom: 0;
+        }
+        
+        /* Testimonial Placeholder */
+        .testimonial-section {
+            padding: 100px 50px;
+        }
+        
+        .testimonial-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 60px 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-content:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.03);
+        }
+        
+        .testimonial-content h3 {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        
+        .testimonial-content p {
+            font-size: 14px;
+            color: #888;
+            letter-spacing: 1px;
+            font-style: italic;
         }
         
         /* Contact Section */
@@ -901,14 +901,6 @@
                 letter-spacing: 3px;
             }
             
-            .testimonial-section {
-                padding: 80px 30px;
-            }
-            
-            .testimonial-content {
-                padding: 40px 30px;
-            }
-            
             .receive-section {
                 padding: 80px 30px;
             }
@@ -921,6 +913,14 @@
             
             .receive-box {
                 padding: 35px;
+            }
+            
+            .testimonial-section {
+                padding: 80px 30px;
+            }
+            
+            .testimonial-content {
+                padding: 40px 30px;
             }
             
             .contact-section {
@@ -1094,17 +1094,7 @@
         
         <div class="section-divider fade-in"></div>
         
-        <!-- Testimonial Placeholder -->
-        <section class="testimonial-section fade-in">
-            <div class="testimonial-content">
-                <h3>CLIENT SUCCESS STORIES</h3>
-                <p>Coming Soon — Matchmakers transforming their practices with data-driven insights</p>
-            </div>
-        </section>
-        
-        <div class="section-divider fade-in"></div>
-        
-        <!-- What You'll Receive Section -->
+        <!-- What You'll Receive Section (SWAPPED - now before Testimonial) -->
         <section class="receive-section fade-in">
             <div class="receive-content">
                 <h2 class="receive-heading">WHAT YOU'LL RECEIVE</h2>
@@ -1112,6 +1102,16 @@
                 <div class="receive-box">
                     <p>You receive a comprehensive confidential report showing your percentile ranking and performance across all critical matchmaking metrics, plus a detailed one-on-one session with an expert from our team who will walk you through exactly how you compare against peers, identify your biggest opportunities for improvement, and provide actionable steps tailored to your practice.</p>
                 </div>
+            </div>
+        </section>
+        
+        <div class="section-divider fade-in"></div>
+        
+        <!-- Testimonial Placeholder (SWAPPED - now after What You'll Receive) -->
+        <section class="testimonial-section fade-in">
+            <div class="testimonial-content">
+                <h3>CLIENT SUCCESS STORIES</h3>
+                <p>Coming Soon — Matchmakers transforming their practices with data-driven insights</p>
             </div>
         </section>
         
@@ -1125,6 +1125,10 @@
             <p class="contact-scarcity">We limit concurrent engagements to ensure depth of analysis. Current availability: <span id="availabilityCounter">3</span> practices.</p>
             
             <form class="contact-form" id="contactForm">
+                <input type="hidden" name="_subject" value="New Niveaux Lead!">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>
@@ -1153,24 +1157,6 @@
     </div>
     
     <script>
-        // Lead capture system using localStorage
-        function saveSubmission(data) {
-            let submissions = JSON.parse(localStorage.getItem('niveauxLeads') || '[]');
-            submissions.push({
-                ...data,
-                timestamp: new Date().toISOString(),
-                id: Date.now()
-            });
-            localStorage.setItem('niveauxLeads', JSON.stringify(submissions));
-        }
-        
-        // Global function to view leads (accessible in console)
-        window.viewLeads = function() {
-            const leads = JSON.parse(localStorage.getItem('niveauxLeads') || '[]');
-            console.table(leads);
-            return leads;
-        };
-        
         // Custom cursor glow
         const cursorGlow = document.getElementById('cursorGlow');
         document.addEventListener('mousemove', (e) => {
@@ -1303,7 +1289,7 @@
             }
         });
         
-        // Form submission with localStorage
+        // Form submission with AJAX to FormSubmit
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -1314,28 +1300,28 @@
             submitBtn.textContent = 'SENDING...';
             
             const formData = new FormData(this);
-            const submissionData = {
-                email: formData.get('email'),
-                blindspot: formData.get('blindspot'),
-                message: formData.get('message'),
-                source: 'niveaux.co'
-            };
             
             try {
-                // Save to localStorage
-                saveSubmission(submissionData);
+                const response = await fetch('https://formsubmit.co/luke@niveaux.co', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
                 
-                messageDiv.className = 'form-message success';
-                messageDiv.textContent = 'Message sent successfully. We\'ll be in touch soon.';
-                
-                this.reset();
-                
-                console.log('Lead captured! Use viewLeads() in console to see all submissions.');
+                if (response.ok) {
+                    messageDiv.className = 'form-message success';
+                    messageDiv.textContent = 'Message sent successfully! We\'ll be in touch soon.';
+                    this.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
                 
             } catch (error) {
                 console.error('Submission error:', error);
                 messageDiv.className = 'form-message error';
-                messageDiv.textContent = 'Error saving submission. Please email luke@niveaux.co directly.';
+                messageDiv.textContent = 'Error sending message. Please email luke@niveaux.co directly.';
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'SEND MESSAGE';
@@ -1343,11 +1329,9 @@
                 setTimeout(() => {
                     messageDiv.textContent = '';
                     messageDiv.className = 'form-message';
-                }, 5000);
+                }, 6000);
             }
         });
-        
-        console.log('Niveaux Lead Capture Active - Use viewLeads() to see submissions');
     </script>
 </body>
 </html>
